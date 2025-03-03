@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>チャットアプリ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .chat-container {
+            width: 90%;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .chat-box {
+            height: 300px;
+            overflow-y: scroll;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        #chat-input {
+            width: calc(100% - 80px);
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+        #send-button {
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box"></div>
+        <input type="text" id="chat-input" placeholder="メッセージを入力">
+        <button id="send-button">送信</button>
+    </div>
+    <script>
+        document.getElementById('send-button').addEventListener('click', function() {
+            var chatInput = document.getElementById('chat-input');
+            var chatBox = document.getElementById('chat-box');
+
+            var message = chatInput.value;
+            if (message.trim() !== '') {
+                var messageElement = document.createElement('div');
+                messageElement.textContent = message;
+                chatBox.appendChild(messageElement);
+
+                chatInput.value = '';
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+        });
+    </script>
+</body>
+</html>
